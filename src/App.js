@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Maze from './pages/Maze'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const mazeId = '2b349e41-55b7-45b5-98f0-6048f37a763a'
+
+    return (
+        <div>
+            <header>
+                <p>
+                    Go Rainbow Dash, go!
+                </p>
+                <Maze
+                    labyrinthUrl={`https://ponychallenge.trustpilot.com/pony-challenge/maze/${mazeId}/print`}
+                    interval={3000}
+                    shouldGetLabyrinth={true}
+                />
+            </header>
+        </div>
+    )
 }
 
-export default App;
+export default App
