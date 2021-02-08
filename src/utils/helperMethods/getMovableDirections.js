@@ -1,7 +1,7 @@
 import DirectionEnum from '../DirectionEnum'
 import { difference } from 'lodash'
 
-export function getMovableDirections (mazeData, currentLocIndex, mazeWidth) {
+export default function getMovableDirections (mazeData, currentLocIndex, mazeWidth) {
     const currentLocWalls = mazeData[currentLocIndex]
 
     const eastLocWalls = mazeData[currentLocIndex + 1]

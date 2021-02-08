@@ -1,7 +1,7 @@
 import React from 'react'
 
-import useGetTextWithInterval from '../../hooks/useGetTextWithInterval'
-import ConditionalRender from '../../components/ConditionalRender'
+import useGetTextWithInterval from '../hooks/useGetTextWithInterval'
+import ConditionalRender from './ConditionalRender'
 
 function Maze ({ mazeId, interval, shouldGetLabyrinth }) {
     const [mazeData, isMazeLoading, mazeError] =
