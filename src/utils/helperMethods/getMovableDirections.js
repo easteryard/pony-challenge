@@ -1,4 +1,4 @@
-import DirectionEnum from '../DirectionEnum'
+import DirectionEnum from '../enums/DirectionEnum'
 import { difference } from 'lodash'
 
 export default function getMovableDirections (mazeData, currentLocIndex, mazeWidth) {
