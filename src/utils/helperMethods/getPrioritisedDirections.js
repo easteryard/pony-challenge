@@ -1,6 +1,6 @@
 import DirectionEnum from '../enums/DirectionEnum'
-import { shuffle } from 'lodash'
 import SideEnum from '../enums/SideEnum'
+import { shuffle } from 'lodash'
 
 export default function getPrioritisedDirections (latestDirection, keepToSide) {
     const directions = Object.values(DirectionEnum)

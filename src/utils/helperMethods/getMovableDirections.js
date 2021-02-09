@@ -1,15 +1,15 @@
 import DirectionEnum from '../enums/DirectionEnum'
 import { difference } from 'lodash'
 
-export default function getMovableDirections (mazeData, currentLocIndex, mazeWidth) {
-    const currentLocWalls = mazeData[currentLocIndex]
+export default function getMovableDirections (mazeData, currentLocIdx, mazeWidth) {
+    const currentLocWalls = mazeData[currentLocIdx]
 
-    const eastLocWalls = mazeData[currentLocIndex + 1]
+    const eastLocWalls = mazeData[currentLocIdx + 1]
     if (hasWallInDirection(eastLocWalls, DirectionEnum.WEST)) {
         currentLocWalls.push(DirectionEnum.EAST)
     }
 
-    const southLocWalls = mazeData[currentLocIndex + mazeWidth]
+    const southLocWalls = mazeData[currentLocIdx + mazeWidth]
     if (hasWallInDirection(southLocWalls, DirectionEnum.NORTH)) {
         currentLocWalls.push(DirectionEnum.SOUTH)
     }
