@@ -8,8 +8,10 @@ import ConditionalRender from '../../../components/ConditionalRender'
 
 const useStyles = makeStyles(theme => ({
     outerGrid: {
-        minWidth: theme.spacing(110),
-        minHeight: theme.spacing(110)
+        minWidth: 'auto',
+        minHeight: 'auto',
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(3)
     }
 }))
 
@@ -19,21 +21,21 @@ function Overview ({ mazeId, dependencies, shouldGetMaze }) {
         useGetText(`https://ponychallenge.trustpilot.com/pony-challenge/maze/${mazeId}/print`, dependencies, shouldGetMaze)
 
     return (
-        <Grid container justify='center' alignItems='center' className={classes.outerGrid}>
-            <ConditionalRender
-                dataArray={[mazeData]}
-                loadingArray={[isMazeLoading]}
-                errorArray={[mazeError]}
-            >
-                {([maze]) => (
+        <ConditionalRender
+            dataArray={[mazeData]}
+            loadingArray={[isMazeLoading]}
+            errorArray={[mazeError]}
+        >
+            {([maze]) => (
+                <Grid container justify='center' className={classes.outerGrid}>
                     <pre>
                         <code>
                             {maze}
                         </code>
                     </pre>
-                )}
-            </ConditionalRender>
-        </Grid>
+                </Grid>
+            )}
+        </ConditionalRender>
     )
 }
 

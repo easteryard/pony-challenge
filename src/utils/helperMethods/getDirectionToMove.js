@@ -2,25 +2,25 @@ import { difference, intersection, shuffle } from 'lodash'
 import DirectionEnum from '../enums/DirectionEnum'
 import SideEnum from '../enums/SideEnum'
 
-export default function getDirectionToMove (mazeInfo, latestDirection, keepToSide) {
+export default function getDirectionToMove (mazeInfo, latestDirection, wallToFollow) {
     const movableDirections = getMovableDirections(mazeInfo.data, mazeInfo.pony[0], mazeInfo.size[0])
-    const prioritisedDirections = getPrioritisedDirections(latestDirection, keepToSide)
+    const prioritisedDirections = getPrioritisedDirections(latestDirection, wallToFollow)
     const prioritisedMovableDirections = intersection(prioritisedDirections, movableDirections)
     return prioritisedMovableDirections[0]
 }
 
-function getPrioritisedDirections (latestDirection, keepToSide) {
+function getPrioritisedDirections (latestDirection, wallToFollow) {
     const directions = Object.values(DirectionEnum)
     const latestDirIdx = directions.findIndex(direction => direction === latestDirection)
 
-    if (keepToSide === SideEnum.LEFT) {
+    if (wallToFollow === SideEnum.LEFT) {
         const nextDirIdx = latestDirIdx - 1
 
         const prioritisedStart = directions.slice(nextDirIdx)
         const prioritisedEnd = directions.slice(0, nextDirIdx)
 
         return [...prioritisedStart, ...prioritisedEnd]
-    } else if (keepToSide === SideEnum.RIGHT) {
+    } else if (wallToFollow === SideEnum.RIGHT) {
         let nextDirIdx = latestDirIdx + 2
         if (nextDirIdx > directions.length) nextDirIdx -= directions.length
 
