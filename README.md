@@ -23,7 +23,8 @@ or [npm](https://www.npmjs.com/get-npm) installed on your machine.
 ### How to run the project
 
 1. Go to root in the project directory.
-2. Run `yarn start` or `npm start`
+2. Run `yarn` or `npm install` to install packages.
+3. Run `yarn start` or `npm start`.
 
 ### `yarn start` & `npm start`
 
