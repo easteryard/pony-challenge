@@ -15,12 +15,17 @@ Create mazes, search for existing ones and run them while playing with the setti
 - Switch from following the left wall to following the right one or vice versa.
 - Get a visual indication of the result when the pony escapes or is caught by the Domokun.
 
+### Requirements
+
+You need to have [yarn](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
+or [npm](https://www.npmjs.com/get-npm) installed on your machine.
+
 ### How to run the project
 
 1. Go to root in the project directory.
-2. Run `yarn start`
+2. Run `yarn start` or `npm start`
 
-### `yarn start`
+### `yarn start` & `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
