@@ -1,27 +1,36 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
+import { Divider, Grid, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-
+    title: {
+        marginBottom: theme.spacing(1)
+    },
+    contentGrid: {
+        width: 'fit-content'
+    },
+    divider: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2)
+    }
 }))
 
-function About (props) {
+function About () {
     const classes = useStyles()
-    const history = useHistory()
-
-    function goToMaze () {
-        history.push('/maze/927e1ea5-e926-48f6-95c9-d51ea06c8c17')
-    }
+    const sourceCodeLink = 'https://github.com/easteryard/pony-challenge'
 
     return (
-        <>
-            <p>About page</p>
-            <Button onClick={goToMaze}>Go to maze</Button>
-        </>
+        <Grid container direction='column'>
+            <Typography variant='h4' className={classes.title}>About</Typography>
+            <Grid container direction='column' className={classes.contentGrid}>
+                <Typography>Attempt to save the pony from the evil Domokun!</Typography>
+                <Typography>Whether you're going to prevail or not is up to you and your skills (almost)!</Typography>
+                <Divider className={classes.divider} />
+                <Typography>To see the source code go to:</Typography>
+                <Typography component='a' href={sourceCodeLink} target='_blank'>{sourceCodeLink}</Typography>
+            </Grid>
+        </Grid>
     )
 }
 

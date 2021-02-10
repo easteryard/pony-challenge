@@ -68,19 +68,21 @@ function Home () {
         <Grid container direction='column'>
             <Typography variant='h4' className={classes.title}>Find maze</Typography>
             <Grid container direction='column' justify='space-between' className={classes.searchGrid}>
-                <TextField value={mazeId} onChange={event => handleMazeId(event.target.value)} label='Maze ID'
-                           variant='filled' />
-                <Grid container justify='space-between' className={classes.actionGrid}>
-                    <div>
-                        <Button onClick={handleClear} variant='outlined' color='primary'>Clear</Button>
-                        <Button onClick={findMaze} variant='contained' color='primary' className={classes.buttonSpacing}>
-                            Search
+                <form onSubmit={event => { event.preventDefault(); findMaze() }}>
+                    <TextField value={mazeId} onChange={event => handleMazeId(event.target.value)} label='Maze ID'
+                               variant='filled' />
+                    <Grid container justify='space-between' className={classes.actionGrid}>
+                        <div>
+                            <Button onClick={handleClear} variant='outlined' color='primary'>Clear</Button>
+                            <Button type='submit' variant='contained' color='primary' className={classes.buttonSpacing}>
+                                Search
+                            </Button>
+                        </div>
+                        <Button onClick={handleRedirect} disabled={dataOnUpdate.isGoToDisabled} variant='contained' color='primary'>
+                            Go to maze
                         </Button>
-                    </div>
-                    <Button onClick={handleRedirect} disabled={dataOnUpdate.isGoToDisabled} variant='contained' color='primary'>
-                        Go to maze
-                    </Button>
-                </Grid>
+                    </Grid>
+                </form>
                 <Typography>Maze state: {dataOnUpdate.mazeState}</Typography>
             </Grid>
         </Grid>

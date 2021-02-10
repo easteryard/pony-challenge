@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import wretch from 'wretch'
 import { isEmpty } from 'lodash'
+import wretch from 'wretch'
+
 import getDirectionToMove from '../utils/helperMethods/getDirectionToMove'
 
 export default function useMovePony (mazeId, mazeInfo, getMazeInfo, wallToFollow, controllerRef, timeoutRef,

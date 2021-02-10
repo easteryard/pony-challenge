@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -37,6 +38,12 @@ function Overview ({ mazeId, dependencies, shouldGetMaze }) {
             )}
         </ConditionalRender>
     )
+}
+
+Overview.propTypes = {
+    dependencies: PropTypes.array.isRequired,
+    mazeId: PropTypes.string.isRequired,
+    shouldGetMaze: PropTypes.bool.isRequired
 }
 
 export default Overview

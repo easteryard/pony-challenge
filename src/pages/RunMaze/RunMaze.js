@@ -1,18 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-
+import { Grid } from '@material-ui/core'
 import { isEmpty } from 'lodash'
 import { useParams } from 'react-router-dom'
 
 import ConditionalRender from '../../components/ConditionalRender'
 import Maze from './components/Maze'
+import MazeStateImage from './components/MazeStateImage'
+import MazeSettings from './components/MazeSettings'
 
 import useGetJson from '../../hooks/useGetJson'
-import SideEnum from '../../utils/enums/SideEnum'
-import { Grid } from '@material-ui/core'
 import useMovePony from '../../hooks/useMovePony'
-import MazeSettings from './components/MazeSettings'
+import SideEnum from '../../utils/enums/SideEnum'
 import MazeStateEnum from '../../utils/enums/MazeStateEnum'
-import MazeStateImage from './components/MazeStateImage'
 
 function RunMaze () {
     const { mazeId } = useParams()

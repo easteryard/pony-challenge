@@ -44,7 +44,12 @@ function MazeSettings ({ isMazeRunning, interval, handleMazeRun, handleInterval,
 }
 
 MazeSettings.propTypes = {
-
+    getWallToFollowSwitchValue: PropTypes.func.isRequired,
+    handleInterval: PropTypes.func.isRequired,
+    handleMazeRun: PropTypes.func.isRequired,
+    handleWallToFollow: PropTypes.func,
+    interval: PropTypes.number.isRequired,
+    isMazeRunning: PropTypes.bool.isRequired
 }
 
 export default MazeSettings
