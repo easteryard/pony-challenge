@@ -5,8 +5,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, FormControl, FormLabel, Grid, Slider, Switch, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-    outerGrid: {
-        width: 'auto'
+    innerGrid: {
+        width: 'auto',
+        minWidth: theme.spacing(20)
     },
     intervalFormControl: {
         width: '100%',
@@ -24,7 +25,7 @@ function MazeSettings ({ isMazeRunning, interval, mazeState, isMazeOver, handleM
 
     return (
         <Grid container justify='center'>
-            <Grid container direction='column' alignItems='center' className={classes.outerGrid}>
+            <Grid container direction='column' alignItems='center' className={classes.innerGrid}>
                 <Button onClick={() => handleMazeRun()} disabled={isMazeOver} variant='contained' color='primary'>
                     {isMazeRunning ? 'Stop the maze' : 'Start the maze'}
                 </Button>
