@@ -37,18 +37,13 @@ function getMovableDirections (mazeWalls, currentLocIdx, mazeWidth) {
     const currentLocWalls = mazeWalls[currentLocIdx]
 
     const eastLocWalls = mazeWalls[currentLocIdx + 1]
-    if (!(currentLocIdx === 0) && mazeWidth % (currentLocIdx + 1) === 0) {
-        currentLocWalls.push(DirectionEnum.EAST)
-    } else if (hasWallInDirection(eastLocWalls, DirectionEnum.WEST)) {
-        currentLocWalls.push(DirectionEnum.EAST)
-    }
+    if (isInSouthEastCorner(currentLocIdx, mazeWalls)) currentLocWalls.push(DirectionEnum.EAST)
+    else if (isAtEastWalls(mazeWidth, currentLocIdx)) currentLocWalls.push(DirectionEnum.EAST)
+    else if (hasWallInDirection(eastLocWalls, DirectionEnum.WEST)) currentLocWalls.push(DirectionEnum.EAST)
 
     const southLocWalls = mazeWalls[currentLocIdx + mazeWidth]
-    if ((currentLocIdx + mazeWidth) > mazeWalls.length - 1) {
-        currentLocWalls.push(DirectionEnum.SOUTH)
-    } else if (hasWallInDirection(southLocWalls, DirectionEnum.NORTH)) {
-        currentLocWalls.push(DirectionEnum.SOUTH)
-    }
+    if (isAtSouthWalls(currentLocIdx, mazeWidth, mazeWalls)) currentLocWalls.push(DirectionEnum.SOUTH)
+    else if (hasWallInDirection(southLocWalls, DirectionEnum.NORTH)) currentLocWalls.push(DirectionEnum.SOUTH)
 
     const directions = Object.values(DirectionEnum)
     return difference(directions, currentLocWalls)
@@ -56,4 +51,16 @@ function getMovableDirections (mazeWalls, currentLocIdx, mazeWidth) {
 
 function hasWallInDirection (walls, direction) {
     return walls.find(wall => wall === direction)
+}
+
+function isInSouthEastCorner (currentLocIdx, mazeWalls) {
+    return currentLocIdx + 1 === mazeWalls.length
+}
+
+function isAtEastWalls (mazeWidth, currentLocIdx) {
+    return !(currentLocIdx === 0) && mazeWidth % (currentLocIdx + 1) === 0
+}
+
+function isAtSouthWalls (currentLocIdx, mazeWidth, mazeWalls) {
+    return currentLocIdx + mazeWidth > mazeWalls.length - 1
 }

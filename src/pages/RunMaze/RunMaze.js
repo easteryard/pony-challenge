@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Grid } from '@material-ui/core'
-import { isEmpty } from 'lodash'
 import { useParams } from 'react-router-dom'
+import { isEmpty } from 'lodash'
+
+import { makeStyles } from '@material-ui/core/styles'
+import { Grid } from '@material-ui/core'
 
 import ConditionalRender from '../../components/ConditionalRender'
 import Maze from './components/Maze'
@@ -12,8 +14,16 @@ import useGetJson from '../../hooks/useGetJson'
 import useMovePony from '../../hooks/useMovePony'
 import SideEnum from '../../utils/enums/SideEnum'
 import MazeStateEnum from '../../utils/enums/MazeStateEnum'
+import { toLowerCase } from '../../utils/helperMethods/textCapitalization'
+
+const useStyles = makeStyles(() => ({
+    outerGrid: {
+        width: '100%'
+    }
+}))
 
 function RunMaze () {
+    const classes = useStyles
     const { mazeId } = useParams()
     const [isMazeRunning, setIsMazeRunning] = useState(false)
     const [isMazeOver, setIsMazeOver] = useState(false)
@@ -31,7 +41,7 @@ function RunMaze () {
 
     const isMazeStateOver = useCallback(() => {
         if (!isEmpty(mazeInfoData)) {
-            return mazeInfoData['game-state'].state === MazeStateEnum.OVER
+            return toLowerCase(mazeInfoData['game-state'].state) !== MazeStateEnum.ACTIVE
         }
     }, [mazeInfoData])
 
@@ -68,10 +78,10 @@ function RunMaze () {
             errorMessage='An error occurred while fetching the maze info.'
         >
             {([mazeInfo]) => (
-                <Grid container style={{ width: '100%'}}>
-                    <MazeSettings isMazeRunning={isMazeRunning} interval={interval} handleMazeRun={handleMazeRun}
-                                  handleInterval={handleInterval} getWallToFollowSwitchValue={isSwitchValueRight}
-                                  handleWallToFollow={handleWallToFollow} />
+                <Grid container className={classes.outerGrid}>
+                    <MazeSettings isMazeRunning={isMazeRunning} interval={interval} mazeState={mazeInfo['game-state'].state}
+                                  isMazeOver={isMazeOver} handleMazeRun={handleMazeRun} handleInterval={handleInterval}
+                                  getWallToFollowSwitchValue={isSwitchValueRight} handleWallToFollow={handleWallToFollow} />
                     <Maze mazeId={mazeId} dependencies={[mazeId, mazeInfo.pony[0]]} shouldGetMaze={!isEmpty(mazeInfo)} />
                     {mazeInfo['game-state']['hidden-url'] && (
                         <MazeStateImage path={mazeInfo['game-state']['hidden-url']} />
