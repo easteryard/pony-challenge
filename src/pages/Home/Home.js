@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     searchGrid: {
         maxWidth: theme.spacing(45)
     },
+    searchField: {
+        width: '100%'
+    },
     actionGrid: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(2)
@@ -70,7 +73,7 @@ function Home () {
             <Grid container direction='column' justify='space-between' className={classes.searchGrid}>
                 <form onSubmit={event => { event.preventDefault(); findMaze() }}>
                     <TextField value={mazeId} onChange={event => handleMazeId(event.target.value)} label='Maze ID'
-                               variant='filled' />
+                               variant='filled' className={classes.searchField}/>
                     <Grid container justify='space-between' className={classes.actionGrid}>
                         <div>
                             <Button onClick={handleClear} variant='outlined' color='primary'>Clear</Button>
