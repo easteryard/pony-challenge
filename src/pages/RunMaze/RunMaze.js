@@ -14,7 +14,6 @@ import useGetJson from '../../hooks/useGetJson'
 import useMovePony from '../../hooks/useMovePony'
 import SideEnum from '../../utils/enums/SideEnum'
 import MazeStateEnum from '../../utils/enums/MazeStateEnum'
-import { toLowerCase } from '../../utils/helperMethods/textCapitalization'
 
 const useStyles = makeStyles(() => ({
     outerGrid: {
@@ -41,7 +40,7 @@ function RunMaze () {
 
     const isMazeStateOver = useCallback(() => {
         if (!isEmpty(mazeInfoData)) {
-            return toLowerCase(mazeInfoData['game-state'].state) !== MazeStateEnum.ACTIVE
+            return mazeInfoData['game-state'].state.toLowerCase() !== MazeStateEnum.ACTIVE
         }
     }, [mazeInfoData])
 
