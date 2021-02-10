@@ -40,9 +40,9 @@ function CreateMaze () {
         wretch('https://ponychallenge.trustpilot.com/pony-challenge/maze')
             .post({
                 'maze-player-name': mazeDetails.playerName,
-                'maze-width': mazeDetails.mazeWidth,
-                'maze-height': mazeDetails.mazeHeight,
-                'difficulty': mazeDetails.difficulty
+                'maze-width': parseInt(mazeDetails.mazeWidth),
+                'maze-height': parseInt(mazeDetails.mazeHeight),
+                'difficulty': parseInt(mazeDetails.difficulty)
             })
             .json(res => {
                 history.push(`/maze/${res['maze_id']}`)
