@@ -21,7 +21,7 @@ const theme = createMuiTheme({
     }
 })
 
-function ParentProviders ({ children }) {
+function GlobalProviders ({ children }) {
     return (
         <ThemeProvider theme={theme}>
             <SnackbarProvider>
@@ -33,7 +33,7 @@ function ParentProviders ({ children }) {
 
 function App () {
     return (
-        <ParentProviders>
+        <GlobalProviders>
             <Router>
                 <NavBar />
                 <Switch>
@@ -44,10 +44,10 @@ function App () {
                     <Route path='*' component={FourOhFour} />
                 </Switch>
             </Router>
-        </ParentProviders>
+        </GlobalProviders>
     )
 }
 
-const AppWithProviders = () => <ParentProviders><App /></ParentProviders>
+const AppWithProviders = () => <GlobalProviders><App /></GlobalProviders>
 
 export default AppWithProviders
