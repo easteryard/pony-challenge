@@ -1,4 +1,4 @@
-# TrustPilot's Pony Challenge
+# Pony Challenge
 
 ### How it works
 
